@@ -18,9 +18,9 @@ public class Pacman extends Characters {
     Map map = Map.getInstance ();
     //a exceção de up, down, left ou right estar fora do mapa creio que não deva acontecer pois os limites do mapa são paredes.
     if (d == 0 && !map.isWall(this.position.up()   )) super(d); //up
-    if (d == 0 && !map.isWall(this.position.left() )) super(d); //left
-    if (d == 0 && !map.isWall(this.position.down() )) super(d); //down
-    if (d == 0 && !map.isWall(this.position.right())) super(d); //right
+    if (d == 1 && !map.isWall(this.position.left() )) super(d); //left
+    if (d == 2 && !map.isWall(this.position.down() )) super(d); //down
+    if (d == 3 && !map.isWall(this.position.right())) super(d); //right
   }
 
   public void getPowerUp () {

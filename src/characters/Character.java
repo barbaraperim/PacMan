@@ -11,12 +11,11 @@ public abstract class Character {
     this.isAlive = true;
   }
 
-  //acho que dá pra fazer um enum com direções mas eu to com muita preguiça sorry
-  public abstract void walk (int d) {
-    if (d == 0) this.position = new Point (this.position.getX() - 1, this.position.getY());
-    if (d == 1) this.position = new Point (this.position.getX(), this.position.getY() - 1);
-    if (d == 2) this.position = new Point (this.position.getX() + 1, this.position.getY());
-    if (d == 3) this.position = new Point (this.position.getX(), this.position.getY() + 1);
+  public void walk (int d) {
+    if (d == 0) this.position = this.position.up();
+    if (d == 1) this.position = this.position.left();
+    if (d == 2) this.position = this.position.down();
+    if (d == 3) this.position = this.position.down();
   }
 
   //temos que sair adicionando exceções em todo canto desse projeto, crtz que ele vai reclamar

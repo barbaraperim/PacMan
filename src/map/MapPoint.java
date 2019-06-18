@@ -1,7 +1,6 @@
 package map;
 
 public class MapPoint extends Point {
-  private int x, y;
   boolean isPastille, isSpecialPastille, isWall;
 
   public MapPoint (int x, int y, boolean isPastille, boolean isSpecialPastille, boolean isWall) {
@@ -19,14 +18,14 @@ public class MapPoint extends Point {
     return this.isSpecialPastille;
   }
 
-  public boolean removePastille () {
+  public boolean removePastille () {//TODO: enum
     boolean dumb = (this.isSpecialPastille || this.isPastille);
     this.isSpecialPastille = false;
     this.isPastille = false;
     return dumb;
   }
 
-  public char getRepresentation () {
+  public char getRepresentation () {//TODO: mudar pra case
     if (isSpecialPastille) return '0';
     if (isPastille) return 'o';
     if (isWall) return '#';

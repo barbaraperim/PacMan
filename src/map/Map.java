@@ -4,8 +4,10 @@ package map;
 //second we should only have one at any time
 
 public class Map {
-  private Point pointMatriz[][];
-  private int mapSize;
+  private MapPoint pointMatriz[][];
+  //TODO: quando criar o mapa, lembra de contar esses dois atributos;
+  private static int pastilleCounter, specialPastilleCounter;
+  private static int mapSize = 40;
   private static Map map = null;
 
   //methods for "singleton"
@@ -24,7 +26,7 @@ public class Map {
     return map;
   }
 
-  public char[][] printMap () {
+  public char[][] print () {
     char map[][] = new char[mapSize][mapSize];
     for(int i = 0; i < mapSize; i ++)
       for(int j = 0; j < mapSize; j++)
