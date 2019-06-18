@@ -39,7 +39,13 @@ public class Map {
     return this.pointMatriz[p.getX()][p.getY()].isWall();
   }
 
-  public int getSize () {
-    return this.mapSize;
+  public int getPastilleCounter () {
+    return Map.pastilleCounter;
+  }
+  public int getSpecialPastilleCounter () {
+    return Map.specialPastilleCounter;
+  }
+  public static int getSize () {
+    return Map.mapSize;
   }
 }
