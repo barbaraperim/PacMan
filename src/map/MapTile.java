@@ -1,11 +1,11 @@
 package map;
 
-public enum MapPointTiles{
+public enum MapTile {
     PASTILLE('.'),
     SPECIAL_PASTILLE('0'),
     WALL('='),
     EMPTY('E');
 
     public char charRep;
-    MapPointTiles(char c){this.charRep = c;}
+    MapTile(char c){this.charRep = c;}
 }

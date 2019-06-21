@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 public class Map {
-    private ArrayList<ArrayList<MapPoint>> pointMatrix;
+    private ArrayList<ArrayList<MapTile>> pointMatrix;
     //TODO: quando criar o mapa, lembra de contar esses dois atributos;
     private static int pastilleCounter, specialPastilleCounter;
 
@@ -22,12 +22,10 @@ public class Map {
             Integer lineNum = 0;
             while ((line = reader.readLine()) != null) {
 
-                ArrayList<MapPoint> mapLine = new ArrayList<>();
+                ArrayList<MapTile> mapLine = new ArrayList<>();
                 Integer columnNum = 0;
                 for (char c : line.toCharArray()) {
-                    MapPoint mapPoint = new MapPoint(lineNum, columnNum, c);
-                    mapLine.add(mapPoint);
-                    columnNum++;
+                    mapLine.add(discoverTile(c));
                 }
                 pointMatrix.add(mapLine);
                 lineNum++;
@@ -37,6 +35,19 @@ public class Map {
         } catch (Exception e) {
             this.MapRandom();
             System.out.println(e.getMessage());
+        }
+    }
+
+    private MapTile discoverTile(char c) {
+        switch (c) {
+            case ('='):
+                return MapTile.WALL;
+            case ('.'):
+                return MapTile.PASTILLE;
+            case ('0'):
+                return MapTile.SPECIAL_PASTILLE;
+            default:
+                return MapTile.EMPTY;
         }
     }
 

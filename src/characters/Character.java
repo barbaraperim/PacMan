@@ -1,13 +1,13 @@
 package characters;
 
-import map.*;
+import map.Point;
 
 public abstract class Character {
   public Point position;
   private boolean isAlive;
 
   public Character (int x, int y) {
-    this.position = new Point (x, y);
+    this.position = new Point(x, y);
     this.isAlive = true;
   }
 
