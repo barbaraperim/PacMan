@@ -4,31 +4,37 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-public class Map {
-    private ArrayList<ArrayList<MapTile>> pointMatrix;
+public class Maze {
+    private ArrayList<ArrayList<MazeTile>> pointMatrix;
     //TODO: quando criar o mapa, lembra de contar esses dois atributos;
     private static int pastilleCounter, specialPastilleCounter;
+    private int lineSize, columnSize;
 
     private static void MapRandom() {
         //creates random map
     }
 
-    public Map(int numberOfFile) {
+    public Maze(int numberOfFile) {
         String filename = "Map0" + numberOfFile + ".txt";
         pointMatrix = new ArrayList<>();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filename));
             String line;
-            Integer lineNum = 0;
-            while ((line = reader.readLine()) != null) {
+            columnSize = 0;
 
-                ArrayList<MapTile> mapLine = new ArrayList<>();
-                Integer columnNum = 0;
+            while ((line = reader.readLine()) != null) {
+                if (line.length() > lineSize) {
+                    lineSize = line.length();
+                }
+
+                ArrayList<MazeTile> mapLine = new ArrayList<>();
+
                 for (char c : line.toCharArray()) {
                     mapLine.add(discoverTile(c));
                 }
+
+                columnSize++;
                 pointMatrix.add(mapLine);
-                lineNum++;
             }
             reader.close();
             System.out.println(this.pointMatrix.toString());
@@ -38,24 +44,36 @@ public class Map {
         }
     }
 
-    private MapTile discoverTile(char c) {
+    private MazeTile discoverTile(char c) {
         switch (c) {
             case ('='):
-                return MapTile.WALL;
+                return MazeTile.WALL;
             case ('.'):
-                return MapTile.PASTILLE;
+                return MazeTile.PASTILLE;
             case ('0'):
-                return MapTile.SPECIAL_PASTILLE;
+                return MazeTile.SPECIAL_PASTILLE;
             default:
-                return MapTile.EMPTY;
+                return MazeTile.EMPTY;
         }
     }
 
     public int getPastilleCounter() {
-        return Map.pastilleCounter;
+        return Maze.pastilleCounter;
     }
 
     public int getSpecialPastilleCounter() {
-        return Map.specialPastilleCounter;
+        return Maze.specialPastilleCounter;
+    }
+
+    public boolean isValidLocation(int line, int column) {
+        return true;
+    }
+
+    public int getLineSize() {
+        return lineSize;
+    }
+
+    public int getColumnSize() {
+        return columnSize;
     }
 }

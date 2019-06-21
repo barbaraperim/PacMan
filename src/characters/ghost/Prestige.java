@@ -1,7 +1,11 @@
-public class Prestige extends Ghost {
+package characters.ghost;
 
+import characters.Figures;
+import map.Maze;
+
+public class Prestige extends Figures implements Ghost {
     @Override
-    public void move() {
+    public void move(Maze maze) {
 
     }
 }

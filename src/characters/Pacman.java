@@ -1,47 +1,21 @@
 //as we should have one pacman at a given moment, we should do it as a singleton
 package characters;
 
-import map.Point;
+import map.Maze;
 
-public class Pacman extends Character {
+public class Pacman extends Figures {
     private int timeWithPowerUp; //the idea is to have it on zero and whe he eats the SpecialPastille we set a number to be the number of walks he can makes until not beeing powered up anymore;
     private static Pacman pacman = null;
 
-    private Pacman(int x, int y) {
+    public Pacman(int x, int y) {
         super(x, y);
+        this.setCharRep('C');
         this.timeWithPowerUp = 0;
     }
 
-    public static Pacman getInstance() {
-        if (pacman == null) {
-            pacman = new Pacman(0, 0);
-        }
-        return pacman;
-    }
-
     @Override
-    public void walk(int d) {
-//    Map map = new Map() ();
-//    //a exceção de up, down, left ou right estar fora do mapa creio que não deva acontecer pois os limites do mapa são paredes.
-//    if (d == 0 && !map.isWall(this.position.up()   )) super(d); //up
-//    if (d == 1 && !map.isWall(this.position.left() )) super(d); //left
-//    if (d == 2 && !map.isWall(this.position.down() )) super(d); //down
-//    if (d == 3 && !map.isWall(this.position.right())) super(d); //right
-    }
+    public void move(Maze maze) {
 
-    @Override
-    public void die() {
-        super.die();
-    }
-
-    @Override
-    public Point getPosition() {
-        return super.getPosition();
-    }
-
-    @Override
-    public char getRepresentation() {
-        return 0;
     }
 
     public void getPowerUp() {
@@ -55,7 +29,6 @@ public class Pacman extends Character {
     public void passTimePowerUp() {
         this.timeWithPowerUp--;
     }
-//  public char getRepresentation () {
-//    return "C";
-//  }
+
+
 }

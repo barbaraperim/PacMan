@@ -1,5 +1,4 @@
-public abstract class Ghost {
-    Integer [][] position;
+package characters.ghost;
 
-    public abstract void move();
+public interface Ghost {
 }

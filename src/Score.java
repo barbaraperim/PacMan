@@ -14,8 +14,8 @@ public class Score {
   //implements the "singleton" pattern;
   private Score () {
 //    //TODO: Exceção: caso o mapa ainda não exista
-//    this.scoreMax = Map.getPastilleCounter() * pastilleValue;
-//    this.scoreMax += Map.getSpecialPastilleCounter() * specialPastilleValue;
+//    this.scoreMax = Maze.getPastilleCounter() * pastilleValue;
+//    this.scoreMax += Maze.getSpecialPastilleCounter() * specialPastilleValue;
 
     this.pastilleScore = 0;
     this.ghostScore = 0;

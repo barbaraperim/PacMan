@@ -19,18 +19,18 @@ public class Printer {
   }
 
 //  private void printTitleBar () {
-//    int size = Map.getSize();
+//    int size = Maze.getSize();
 //    Score score = Score.getInstance();
 //    String s = "  Score : " + score.getScore() + "     Extra lifes : " + score.lifeCount()-1;
 //    System.out.println(s);
 //  }
-//  private void printMap (Character[] cVector) {
-//    Map map = Map.getInstance();
+//  private void printMap (Figures[] cVector) {
+//    Maze map = Maze.getInstance();
 //    char[][] frame = map.printMap();
 //
 //    //placing each character in the frame
 //    for (int i = 0; i < cVector.size(); i++)
-//      frame[cVector[i].getPosition().getX()][cVector[i].getPosition().getY()] = cVector[i].getRepresentation();
+//      frame[cVector[i].getLocation().getX()][cVector[i].getLocation().getY()] = cVector[i].getRepresentation();
 //
 //    //actual printing
 //    for (int i = 0; i < cVector.size(); i++){
@@ -39,7 +39,7 @@ public class Printer {
 //      System.out.print("\n");
 //    }
 //  }
-//  public void printFrame (Character[] cVector) {
+//  public void printFrame (Figures[] cVector) {
 //    this.clearScreen();
 //    this.printTitleBar ();
 //    this.printMap(cVector);
