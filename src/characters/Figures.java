@@ -1,35 +1,34 @@
 package characters;
 
-import map.Maze;
-
 public abstract class Figures {
     public Location location;
     private boolean alive;
     public char charRep;
 
-    public Figures() {}
+    public Figures() {
+    }
 
     public Figures(int x, int y) {
         this.location = new Location(x, y);
         this.alive = true;
     }
 
-    public void walk(int d) {
-        if (d == 0) {
+    protected void walk(Direction d) {
+        if (d == Direction.UP) {
             this.location = this.location.up();
         }
-        if (d == 1) {
+        if (d == Direction.LEFT) {
             this.location = this.location.left();
         }
-        if (d == 2) {
+        if (d == Direction.DOWN) {
             this.location = this.location.down();
         }
-        if (d == 3) {
-            this.location = this.location.down();
+        if (d == Direction.RIGHT) {
+            this.location = this.location.right();
         }
     }
 
-    public abstract void move(Maze maze);
+    public abstract void move(GameContext gameContext);
 
     //TODO adicionar exceçoes
     public void die() {
