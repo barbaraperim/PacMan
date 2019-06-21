@@ -1,51 +1,50 @@
 package map;
-//map should be implemented as singleton.
-//first we don't have to pass it as argument to every object
-//second we should only have one at any time
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
 
 public class Map {
-  private MapPoint pointMatriz[][];
-  //TODO: quando criar o mapa, lembra de contar esses dois atributos;
-  private static int pastilleCounter, specialPastilleCounter;
-  private static int mapSize = 40;
-  private static Map map = null;
+    private ArrayList<ArrayList<MapPoint>> pointMatrix;
+    //TODO: quando criar o mapa, lembra de contar esses dois atributos;
+    private static int pastilleCounter, specialPastilleCounter;
 
-  //methods for "singleton"
-  private static void MapRandom(){
-      //creates random map
-  }
+    private static void MapRandom() {
+        //creates random map
+    }
 
-  private Map (int numberOfFile) {
-    //creates based on the number of the file
-    //same number of the file ("map0.txt", "map1.txt"...)
-    //if there's no such file with this number, we shoud return a random map
-  }
+    public Map(int numberOfFile) {
+        String filename = "Map0" + numberOfFile + ".txt";
+        pointMatrix = new ArrayList<>();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            String line;
+            Integer lineNum = 0;
+            while ((line = reader.readLine()) != null) {
 
-  public static Map getInstance (int numberOfFile) {
-    if (map == null) map = new Map(numberOfFile);
-    return map;
-  }
+                ArrayList<MapPoint> mapLine = new ArrayList<>();
+                Integer columnNum = 0;
+                for (char c : line.toCharArray()) {
+                    MapPoint mapPoint = new MapPoint(lineNum, columnNum, c);
+                    mapLine.add(mapPoint);
+                    columnNum++;
+                }
+                pointMatrix.add(mapLine);
+                lineNum++;
+            }
+            reader.close();
+            System.out.println(this.pointMatrix.toString());
+        } catch (Exception e) {
+            this.MapRandom();
+            System.out.println(e.getMessage());
+        }
+    }
 
-  public char[][] print () {
-    char map[][] = new char[mapSize][mapSize];
-    for(int i = 0; i < mapSize; i ++)
-      for(int j = 0; j < mapSize; j++)
-        map[i][j] = this.pointMatriz[i][j].getRepresentation();
-    return map;
-  }
+    public int getPastilleCounter() {
+        return Map.pastilleCounter;
+    }
 
-  public boolean isWall (Point p) {
-    //exceção de estar fora do mapa
-    return this.pointMatriz[p.getX()][p.getY()].isWall();
-  }
-
-  public int getPastilleCounter () {
-    return Map.pastilleCounter;
-  }
-  public int getSpecialPastilleCounter () {
-    return Map.specialPastilleCounter;
-  }
-  public static int getSize () {
-    return Map.mapSize;
-  }
+    public int getSpecialPastilleCounter() {
+        return Map.specialPastilleCounter;
+    }
 }

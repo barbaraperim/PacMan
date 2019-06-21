@@ -1,34 +1,27 @@
 package map;
 
 public class MapPoint extends Point {
-  boolean isPastille, isSpecialPastille, isWall;
 
-  public MapPoint (int x, int y, boolean isPastille, boolean isSpecialPastille, boolean isWall) {
+  private char charRep;
+  private MapPointTiles tile;
+
+  public MapPoint (int x, int y, char ch) {
     super(x, y);
-    this.isPastille = isPastille;
-    this.isSpecialPastille = isSpecialPastille;
-    this.isWall = isWall;
+
+    this.charRep = ch;
+    for (MapPointTiles tiles : MapPointTiles.values()){
+     if (tiles.charRep == ch){
+       this.tile = tiles;
+     }
+    }
   }
 
-  public boolean isWall () {
-    return this.isWall;
+  @Override
+  public String toString() {
+    return String.valueOf(charRep);
   }
 
-  public boolean isSpecialPastille () {
-    return this.isSpecialPastille;
-  }
-
-  public boolean removePastille () {//TODO: enum
-    boolean dumb = (this.isSpecialPastille || this.isPastille);
-    this.isSpecialPastille = false;
-    this.isPastille = false;
-    return dumb;
-  }
-
-  public char getRepresentation () {//TODO: mudar pra case
-    if (isSpecialPastille) return '0';
-    if (isPastille) return 'o';
-    if (isWall) return '#';
-    return ' ';
+  public char getRepresentation () {
+    return this.charRep;
   }
 }

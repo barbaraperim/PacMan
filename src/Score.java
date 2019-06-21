@@ -13,9 +13,9 @@ public class Score {
 
   //implements the "singleton" pattern;
   private Score () {
-    //TODO: Exceção: caso o mapa ainda não exista
-    this.scoreMax = Map.getPastilleCounter() * pastilleValue;
-    this.scoreMax += Map.getSpecialPastilleCounter() * specialPastilleValue;
+//    //TODO: Exceção: caso o mapa ainda não exista
+//    this.scoreMax = Map.getPastilleCounter() * pastilleValue;
+//    this.scoreMax += Map.getSpecialPastilleCounter() * specialPastilleValue;
 
     this.pastilleScore = 0;
     this.ghostScore = 0;
@@ -38,25 +38,25 @@ public class Score {
   }
 
   //since we store many "types" of scores, we have to have a getScore that returns the "real" score;
-  public static int getScore () {
-    return pastilleScore - paidForLife + ghostScore;
-  }
+//  public static int getScore () {
+//    return pastilleScore - paidForLife + ghostScore;
+//  }
 
   //QUANTIDADE MÍNIMA DE VIDAS PRO JOGO CONTINUAR É 1, SE CHEGAR A ZERO ACABOU
-  public static int lifeCount () {
-    return initialLifes + (this.getScore() / scoreToLife);
-  }
-  public void loseLife () {
-    if (this.lifeCount() > 0) {
-      if (initialLifes > 0) initialLifes --;
-      else (this.getScore() / scoreToLife > 0) paidForLife += scoreToLife;
-    }// TODO: exceção não há mais nada a perder
-  }
+//  public static int lifeCount () {
+//    return initialLifes + (this.getScore() / scoreToLife);
+//  }
+//  public void loseLife () {
+//    if (this.lifeCount() > 0) {
+//      if (initialLifes > 0) initialLifes --;
+//      else (this.getScore() / scoreToLife > 0) paidForLife += scoreToLife;
+//    }// TODO: exceção não há mais nada a perder
+//  }
 
   //all gameover situations involve the score, so we made it the responsible for that task
   //the game ends when the life count reaches zero or we ate all pastilles (wich we know by comparing the score of eaten pastilles "score" and the total score we can obtain eating, "scoreMax")
-  public boolean endGame () {
-    return scoreMax == pastilleScore || this.lifeCount() == 0;
-  }
+//  public boolean endGame () {
+//    return scoreMax == pastilleScore || this.lifeCount() == 0;
+//  }
 
 }

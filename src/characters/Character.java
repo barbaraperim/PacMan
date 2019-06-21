@@ -3,7 +3,7 @@ package characters;
 import map.*;
 
 public abstract class Character {
-  private Point position;
+  public Point position;
   private boolean isAlive;
 
   public Character (int x, int y) {
