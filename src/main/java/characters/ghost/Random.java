@@ -13,11 +13,11 @@ public class Random extends Figures implements Ghost {
             int max = 4;
             Integer randomDirection = min + (int)(Math.random() * ((max - min) + 1));
 
-//            if (gameContext.isValidLocation(line, column)){
-//                this.location.setY(line);
-//                this.location.setX(column);
-//                moved = true;
-//            }
+            if (gameContext.isValidLocation(line, column)){
+                this.location.setY(line);
+                this.location.setX(column);
+                moved = true;
+            }
         }
     }
 }
