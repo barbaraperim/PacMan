@@ -5,10 +5,18 @@ import java.util.ArrayList;
 
 public class GameContext {
 
-    ArrayList<Location> ghostLocations;
-    ArrayList<Location> pacManLocations;
-    Integer columnSize, lineSize;
-    Maze maze;
+    private ArrayList<Location> ghostLocations;
+    private ArrayList<Location> pacManLocations;
+    private Integer columnSize, lineSize;
+    private Maze maze;
+
+    public ArrayList<Location> getGhostLocations() {
+        return ghostLocations;
+    }
+
+    public ArrayList<Location> getPacManLocations() {
+        return pacManLocations;
+    }
 
     public Integer getColumnSize() {
         return columnSize;
@@ -18,7 +26,7 @@ public class GameContext {
         return lineSize;
     }
 
-    public boolean isValidLocation(Integer x, Integer y) throws Exception{
+    public boolean isValidLocation(double x, double y) throws Exception{
         return maze.isValidLocation(x, y);
     }
 }
