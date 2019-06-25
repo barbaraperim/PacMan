@@ -13,22 +13,37 @@ public abstract class Figures {
         this.alive = true;
     }
 
-    protected void walk(Direction d) {
-        if (d == Direction.UP) {
-            this.location = this.location.up();
-        }
-        if (d == Direction.LEFT) {
-            this.location = this.location.left();
-        }
-        if (d == Direction.DOWN) {
-            this.location = this.location.down();
-        }
-        if (d == Direction.RIGHT) {
-            this.location = this.location.right();
+    protected void walk(Direction direction, GameContext gameContext) throws Exception{
+        Location newLocation = this.location.clone();
+        switch (direction) {
+            case UP:
+                newLocation.up();
+                if (gameContext.isValidLocation(newLocation.getX(), newLocation.getY())) {
+                    this.location = this.location.up();
+                }
+                break;
+            case LEFT:
+                newLocation.left();
+                if (gameContext.isValidLocation(newLocation.getX(), newLocation.getY())) {
+                    this.location = this.location.left();
+                }
+                break;
+            case DOWN:
+                newLocation.down();
+                if (gameContext.isValidLocation(newLocation.getX(), newLocation.getY())) {
+                    this.location = this.location.down();
+                }
+                break;
+            case RIGHT:
+                newLocation.right();
+                if (gameContext.isValidLocation(newLocation.getX(), newLocation.getY())) {
+                    this.location = this.location.right();
+                }
+                break;
         }
     }
 
-    public abstract void move(GameContext gameContext);
+    public abstract void move(GameContext gameContext) throws Exception;
 
     //TODO adicionar exceçoes
     public void die() {
@@ -58,4 +73,5 @@ public abstract class Figures {
     public void setCharRep(char charRep) {
         this.charRep = charRep;
     }
+
 }

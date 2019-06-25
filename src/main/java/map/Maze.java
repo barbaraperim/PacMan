@@ -65,7 +65,11 @@ public class Maze {
         return Maze.specialPastilleCounter;
     }
 
-    public boolean isValidLocation(int line, int column) {
+    public boolean isValidLocation(int line, int column) throws Exception {
+        //TODO correct condition
+        if (line == 0 && column == 0) {
+            throw new Exception(String.format("Invalid Location X: %s Y: %s", column, line));
+        }
         return true;
     }
 

@@ -21,6 +21,10 @@ public class Location {
                 getY() == location.getY();
     }
 
+    public Location clone(){
+        return new Location(this.getX(), this.getY());
+    }
+
     public int getX() {
         return x;
     }

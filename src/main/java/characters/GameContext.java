@@ -18,7 +18,7 @@ public class GameContext {
         return lineSize;
     }
 
-    public boolean isValidLocation(Integer x, Integer y){
+    public boolean isValidLocation(Integer x, Integer y) throws Exception{
         return maze.isValidLocation(x, y);
     }
 }

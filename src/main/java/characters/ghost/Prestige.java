@@ -14,12 +14,6 @@ public class Prestige extends Figures implements Ghost {
 
             max = gameContext.getLineSize();
             Integer line = min + (int)(Math.random() * ((max - min) + 1));
-
-            if (gameContext.isValidLocation(line, column)){
-                this.location.setY(line);
-                this.location.setX(column);
-                moved = true;
-            }
         }
     }
 }
