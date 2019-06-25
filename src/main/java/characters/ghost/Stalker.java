@@ -1,11 +1,11 @@
 package characters.ghost;
 
 import characters.Figures;
-import map.Maze;
+import characters.GameContext;
 
 public class Stalker extends Figures implements Ghost{
     @Override
-    public void move(Maze maze) {
+    public void move(GameContext gameContext) {
 
     }
 }
