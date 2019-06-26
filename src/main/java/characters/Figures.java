@@ -1,8 +1,5 @@
 package characters;
 
-import java.awt.*;
-import java.awt.geom.Point2D;
-
 public abstract class Figures {
     public Location location;
     private boolean alive;

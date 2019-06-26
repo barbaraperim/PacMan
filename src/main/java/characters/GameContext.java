@@ -1,32 +1,16 @@
 package characters;
 
-import map.Maze;
 import java.util.ArrayList;
 
-public class GameContext {
+public interface GameContext {
 
-    private ArrayList<Location> ghostLocations;
-    private ArrayList<Location> pacManLocations;
-    private Integer columnSize, lineSize;
-    private Maze maze;
+    ArrayList<Location> getGhostLocations();
 
-    public ArrayList<Location> getGhostLocations() {
-        return ghostLocations;
-    }
+    ArrayList<Location> getPacManLocations();
 
-    public ArrayList<Location> getPacManLocations() {
-        return pacManLocations;
-    }
+    Integer getColumnSize();
 
-    public Integer getColumnSize() {
-        return columnSize;
-    }
+    Integer getLineSize();
 
-    public Integer getLineSize() {
-        return lineSize;
-    }
-
-    public boolean isValidLocation(double x, double y) throws Exception{
-        return maze.isValidLocation(x, y);
-    }
+    boolean isValidLocation(double x, double y) throws Exception;
 }
