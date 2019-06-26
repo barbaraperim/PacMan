@@ -1,9 +1,16 @@
 package characters;
 
-public class Location {
-    private int x, y;
+import java.awt.geom.Point2D;
 
-    public Location(int x, int y) {
+public class Location extends Point2D{
+    private double x, y;
+
+    public Location(double x, double y) {
+        this.setLocation(x, y);
+    }
+
+    @Override
+    public void setLocation(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -21,19 +28,25 @@ public class Location {
                 getY() == location.getY();
     }
 
-    public int getX() {
+    public Location clone(){
+        return new Location(this.getX(), this.getY());
+    }
+
+    @Override
+    public double getX() {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public int getY() {
+    @Override
+    public double getY() {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(double y) {
         this.y = y;
     }
 

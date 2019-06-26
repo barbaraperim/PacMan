@@ -3,7 +3,7 @@ package characters;
 
 public class Pacman extends Figures {
     private int timeWithPowerUp; //the idea is to have it on zero and whe he eats the SpecialPastille we set a number to be the number of walks he can makes until not beeing powered up anymore;
-    private static Pacman pacman = null;
+    private Score score;
 
     public Pacman(int x, int y) {
         super(x, y);
