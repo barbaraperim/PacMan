@@ -7,6 +7,6 @@ public class Main {
 
 //        Maze test = new Maze(1);
         Game game = new Game();
-
+        game.play();
     }
 }
