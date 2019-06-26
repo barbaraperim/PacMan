@@ -2,9 +2,12 @@ import characters.GameContext;
 import characters.Location;
 import map.Maze;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Scanner;
 
-public class Game implements GameContext {
+public class Game implements GameContext, KeyListener {
     ArrayList<Location> ghostLocations;
     private ArrayList<Location> pacManLocations;
     private Maze maze;
@@ -13,6 +16,20 @@ public class Game implements GameContext {
         return false;
     }
 
+    @Override
+    public void keyTyped(KeyEvent keyEvent) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent keyEvent) {
+        System.out.println(keyEvent.getKeyChar());
+    }
+
+    @Override
+    public void keyReleased(KeyEvent keyEvent) {
+
+    }
 
     public void Play () {
         /*
@@ -21,6 +38,9 @@ public class Game implements GameContext {
             3 - Pedir input, com input verificar: se mesma posição que fantasma, se pastilha, se pastilha especial
             4 - Verificar se acabou, se morreu ou se ganhou
         * */
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Escolha o mapa 1, 2, 3: ");
+
     }
 
     @Override
