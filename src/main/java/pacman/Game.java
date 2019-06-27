@@ -2,7 +2,6 @@ import characters.GameContext;
 import characters.Location;
 import map.Maze;
 
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -29,7 +28,6 @@ public class Game implements GameContext {
             this.maze = new Maze(sc.nextInt());
             System.out.println(this.maze.toString());
         }
-
 
 
         sc.close();
