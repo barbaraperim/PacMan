@@ -5,6 +5,7 @@ import characters.Pacman;
 import characters.Figures;
 import characters.ghost.*;
 import characters.Score;
+import imputOutput.Printer;
 import map.Maze;
 
 import java.util.ArrayList;
@@ -44,11 +45,20 @@ public class Game implements GameContext {
         this.ghostsList.add(new Random (maze.getLineSize()/2, maze.getColumnSize()/2));
         this.ghostsList.add(new Stalker (maze.getLineSize()/2, maze.getColumnSize()/2));
 
+        Printer printer = new Printer();
+
         while (!score.hasEnded()) {
+            //imprimir o frame
+            printer.printFrame(this);
+
+            //ler o input do usuario e guarda-lo em lastInput
             this.lastInput = sc.next().charAt(0);
-            pacman.move(gameContext);
+
+            //pacman se move (ele vai perguntar pro game, depois, qual foi o ultimo imput) e perde um "tempo" de power up, se tiver
+            pacman.move(this);
             if (pacman.isPoweredUp()){pacman.passTimePowerUp();}
 
+            //primeira conferência de sobreposição
             for (Figures f : this.ghostsList) {
                 if (f.isAlive() && pacman.location.equals(f.location)) {
                     if (pacman.isPoweredUp ()) {
@@ -59,11 +69,12 @@ public class Game implements GameContext {
                 }
             }
 
-            pacman.eat(gameContext);
+            pacman.eat(this);
 
+            //movimento dos fantasmas e segunda conferência de sobreposição
             for (Figures f : this.ghostsList) {
                 if (f.isAlive()) {
-                    f.move(gameContext);
+                    f.move(this);
                     if (pacman.location.equals(f.location)) {
                         if (pacman.isPoweredUp ()) {
                             f.die();
@@ -76,10 +87,6 @@ public class Game implements GameContext {
         }
 
         sc.close();
-    }
-
-    public char getInput() {
-        return this.lastInput;
     }
 
     @Override
@@ -109,17 +116,23 @@ public class Game implements GameContext {
         switch (this.lastInput) {
             case 'w':
                 return Direction.UP;
-            break;
             case 'a':
                 return Direction.RIGHT;
-            break;
             case 's':
                 return Direction.DOWN;
-            break;
             case 'd':
                 return Direction.LEFT;
-            break;
         }
+        return Direction.LEFT;
+    }
+
+    public ArrayList<Figures> getFiguresList(){
+        ArrayList<Figures> figuresArrayList = new ArrayList<>();
+        figuresArrayList.add(pacman);
+        for (Figures f : this.ghostsList) {
+            figuresArrayList.add(f);
+        }
+        return figuresArrayList;
     }
 
 }

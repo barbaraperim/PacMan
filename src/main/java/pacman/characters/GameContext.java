@@ -14,4 +14,7 @@ public interface GameContext {
     Score getScore();
 
     Direction getInputDirection();
-}
+
+    ArrayList<Figures> getFiguresList();
+
+    }
