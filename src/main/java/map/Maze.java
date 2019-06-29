@@ -39,7 +39,7 @@ public class Maze {
             reader.close();
             System.out.println(this.pointMatrix.toString());
         } catch (Exception e) {
-            this.MapRandom();
+            Maze.MapRandom();
             System.out.println(e.getMessage());
         }
     }
