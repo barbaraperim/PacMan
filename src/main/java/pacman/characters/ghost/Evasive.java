@@ -8,9 +8,9 @@ import characters.Location;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Evasive extends Figures implements Ghost {
+public class Evasive extends Figures {
     @Override
-    public void move(GameContext gameContext) throws Exception{
+    public void move(GameContext gameContext){
         ArrayList<Location> ghostLocation = gameContext.getGhostLocations();
         double distance, biggestDistance = 0;
         Direction direction = null;
@@ -42,7 +42,7 @@ public class Evasive extends Figures implements Ghost {
                 direction = d;
             }
         }
-
+        
         this.walk(direction, gameContext);
     }
 }

@@ -1,16 +1,17 @@
 package characters;
 
 import java.util.ArrayList;
+import map.Maze;
 
 public interface GameContext {
 
     ArrayList<Location> getGhostLocations();
 
-    ArrayList<Location> getPacManLocations();
+    Location getPacManLocation();
 
-    Integer getColumnSize();
+    Maze getMaze();
 
-    Integer getLineSize();
+    Score getScore();
 
-    boolean isValidLocation(double x, double y) throws Exception;
+    Direction getInputDirection();
 }

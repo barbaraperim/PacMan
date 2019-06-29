@@ -1,5 +1,10 @@
+import characters.Direction;
 import characters.GameContext;
 import characters.Location;
+import characters.Pacman;
+import characters.Figures;
+import characters.ghost.*;
+import characters.Score;
 import map.Maze;
 
 import java.util.ArrayList;
@@ -13,7 +18,7 @@ public class Game implements GameContext {
     private Maze maze;
     private Score score;
 
-    private Integer pastillesLeft; //acho que não precisa disso já que o score vai controlar o final do jogo
+    private char lastInput = 'w';
 
     public void play() {
         /*
@@ -31,21 +36,20 @@ public class Game implements GameContext {
         }
 
         //criando o pacman dois abaixo dos fantasmas
-        this.pacman = new Pacman (maze.getLineSize()/2 + 2, maze.getColumnSize()/2);
+        this.pacman = new Pacman(maze.getLineSize()/2 + 2, maze.getColumnSize()/2);
 
         //adicionando os fantasmas no meio do mapa
-        this.ghostsList.add(new Evasive (maze.getLineSize()/2, maze.getColumnSize()/2));
+        this.ghostsList.add(new Evasive ((int) maze.getLineSize()/2, (int) maze.getColumnSize()/2));
         this.ghostsList.add(new Prestige (maze.getLineSize()/2, maze.getColumnSize()/2));
         this.ghostsList.add(new Random (maze.getLineSize()/2, maze.getColumnSize()/2));
         this.ghostsList.add(new Stalker (maze.getLineSize()/2, maze.getColumnSize()/2));
 
         while (!score.hasEnded()) {
-            char input = sc.next().charAt(0);
-            Direction d = this.translateDirection (input);
-            pacman.move();
+            this.lastInput = sc.next().charAt(0);
+            pacman.move(gameContext);
             if (pacman.isPoweredUp()){pacman.passTimePowerUp();}
 
-            for (Figure f : this.ghostsList) {
+            for (Figures f : this.ghostsList) {
                 if (f.isAlive() && pacman.location.equals(f.location)) {
                     if (pacman.isPoweredUp ()) {
                         f.die();
@@ -57,7 +61,7 @@ public class Game implements GameContext {
 
             pacman.eat(gameContext);
 
-            for (Figure f : this.ghostsList) {
+            for (Figures f : this.ghostsList) {
                 if (f.isAlive()) {
                     f.move(gameContext);
                     if (pacman.location.equals(f.location)) {
@@ -72,23 +76,6 @@ public class Game implements GameContext {
         }
 
         sc.close();
-    }
-
-    private Direction translateDirection (char c) {
-        switch (c) {
-            case 'w':
-                return Direction.UP;
-                break;
-            case 'a':
-                return Direction.RIGHT;
-                break;
-            case 's':
-                return Direction.DOWN;
-                break;
-            case 'd':
-                return Direction.LEFT;
-                break;
-        }
     }
 
     public char getInput() {
@@ -107,7 +94,7 @@ public class Game implements GameContext {
 
     //TEM QUE VER ESSE MÉTODO. A gnt fez ele baseando na flexibilidade de ter mais de um pacman em campo. Apesar de eu também querer fazer isso, creio que esse é o único momento que deixamos essa flexibilidade. Teríamos que tratar de vários inputs ao mesmo tempo e ai as coisas ficam infernais.
     @Override
-    public ArrayList<Location> getPacManLocations() {
+    public Location getPacManLocation() {
         return this.pacman.getLocation();
     }
 
@@ -116,4 +103,23 @@ public class Game implements GameContext {
 
     @Override
     public Score getScore () {return this.score;}
+
+    @Override
+    public Direction getInputDirection () {
+        switch (this.lastInput) {
+            case 'w':
+                return Direction.UP;
+            break;
+            case 'a':
+                return Direction.RIGHT;
+            break;
+            case 's':
+                return Direction.DOWN;
+            break;
+            case 'd':
+                return Direction.LEFT;
+            break;
+        }
+    }
+
 }
