@@ -30,20 +30,22 @@ public class Game implements GameContext {
         * */
         Scanner sc = new Scanner(System.in);
         System.out.println("Escolha o mapa 1, 2, 3: ");
-        while (sc.hasNext()) {
-            this.maze = new Maze(sc.nextInt());
-            this.score = new Score (this.maze);
-            System.out.println(this.maze.toString());
-        }
+
+        this.maze = new Maze(sc.nextInt());
+        this.score = new Score (this.maze);
+        System.out.println(this.maze.toString());
+
 
         //criando o pacman dois abaixo dos fantasmas
         this.pacman = new Pacman(maze.getLineSize()/2 + 2, maze.getColumnSize()/2);
 
+        this.ghostsList = new ArrayList<>();
+
         //adicionando os fantasmas no meio do mapa
         this.ghostsList.add(new Evasive (10, 10));
-        this.ghostsList.add(new Prestige (maze.getLineSize()/2, maze.getColumnSize()/2));
-        this.ghostsList.add(new Random (maze.getLineSize()/2, maze.getColumnSize()/2));
-        this.ghostsList.add(new Stalker (maze.getLineSize()/2, maze.getColumnSize()/2));
+        this.ghostsList.add(new Prestige (10, 10));
+        this.ghostsList.add(new Random (10, 10));
+        this.ghostsList.add(new Stalker (10, 10));
 
         Printer printer = new Printer();
 
