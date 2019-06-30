@@ -68,7 +68,7 @@ public class Game implements GameContext {
                         f.die();
                         score.scoreGhost();
                     }
-                    else pacman.die();
+                    else pacman.die(this);
                 }
             }
 
@@ -84,8 +84,7 @@ public class Game implements GameContext {
                             score.scoreGhost();
                         }
                         else {
-                            System.out.println("SE FUDEU");
-                            pacman.die();
+                            pacman.die(this);
                             System.out.println(score.lifeCount());
                             System.out.println(pacman.isAlive());
                         }
