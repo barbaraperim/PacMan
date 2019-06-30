@@ -71,8 +71,7 @@ public class Maze {
     }
 
     public boolean isValidLocation(Location l){
-        //TODO correct condition
-        if (l.getX() < 0 || l.getY() < 0 || l.getX() > this.getLineSize() || l.getY() > this.getColumnSize()) {
+        if (l.getX() < 0 || l.getY() < 0 || l.getX() > this.getColumnSize() || l.getY() > this.getLineSize()) {
             return false;
         }
         if (matrix.get((int) l.getX()).get((int) l.getY()) == MazeTile.WALL) {
@@ -93,8 +92,12 @@ public class Maze {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < matrix.size(); i++) {
-            for (int j = 0; j < matrix.get(i).size(); j++) {
-                stringBuilder.append((matrix.get(i).get(j).charRep + " "));
+            for (int j = 0; j < this.lineSize ; j++) {
+                try{
+                    stringBuilder.append((matrix.get(i).get(j).charRep + " "));
+                } catch (Exception e) {
+                    stringBuilder.append(("  "));
+                }
             }
             stringBuilder.append("\n");
         }
