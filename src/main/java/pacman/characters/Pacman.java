@@ -44,7 +44,7 @@ public class Pacman extends Figures {
                 this.getPowerUp();
                 break;
             case PASTILLE:
-                s.scoreSpecialPastille();
+                s.scorePastille();
                 m.eatPastille (this.location);
                 break;
         }

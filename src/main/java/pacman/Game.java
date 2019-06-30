@@ -47,8 +47,6 @@ public class Game implements GameContext {
         this.ghostsList.add(new Random (maze.getColumnSize()/2, maze.getLineSize()/2));
         this.ghostsList.add(new Stalker (maze.getColumnSize()/2, maze.getLineSize()/2));
 
-
-
         Printer printer = new Printer();
 
         printer.printFrame(this);
