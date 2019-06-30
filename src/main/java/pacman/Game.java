@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game implements GameContext {
-    //lista de fantasmas, para não perdermos eles de vista
     private ArrayList<Figures> ghostsList;
     private Pacman pacman;
 
@@ -21,35 +20,23 @@ public class Game implements GameContext {
 
     private char lastInput = 'w';
 
-    public void play() {
-        /*
-            1 - Escolher Mapa e instanciar
-            2 - Setar posição dos personagens
-            3 - Pedir input, com input verificar: se mesma posição que fantasma, se pastilha, se pastilha especial
-            4 - Verificar se acabou, se morreu ou se ganhou
-        * */
+    void play() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Escolha o mapa 1, 2, 3: ");
+        System.out.println("Escolha o mapa 1, 2, 3 (ou digite qualquer número para randomizar): ");
 
         this.maze = new Maze(sc.nextInt());
-        this.score = new Score (this.maze);
+        this.score = new Score (this);
         System.out.println(this.maze.toString());
 
-
-        //criando o pacman dois abaixo dos fantasmas
         this.pacman = new Pacman(maze.getColumnSize()/2 + 5, maze.getLineSize()/2);
 
         this.ghostsList = new ArrayList<>();
-
-        //adicionando os fantasmas no meio do mapa
-
         this.ghostsList.add(new Stalker (maze.getColumnSize()/2, maze.getLineSize()/2));
         this.ghostsList.add(new Evasive (maze.getColumnSize()/2, maze.getLineSize()/2));
         this.ghostsList.add(new Prestige (maze.getColumnSize()/2, maze.getLineSize()/2));
         this.ghostsList.add(new Random (maze.getColumnSize()/2, maze.getLineSize()/2));
 
         Printer printer = new Printer();
-
         printer.printFrame(this);
 
         while (!score.hasEnded() && pacman.isAlive()) {
@@ -66,7 +53,7 @@ public class Game implements GameContext {
 
             //primeira conferência de sobreposição
             for (Figures f : this.ghostsList) {
-                if (f.isAlive() && pacman.location.equals(f.location)) {
+                if (f.isAlive() && pacman.getLocation().equals(f.getLocation())) {
                     if (pacman.isPoweredUp ()) {
                         f.die();
                         score.scoreGhost();
@@ -81,7 +68,7 @@ public class Game implements GameContext {
             for (Figures f : this.ghostsList) {
                 if (f.isAlive()) {
                     f.move(this);
-                    if (pacman.location.equals(f.location)) {
+                    if (pacman.getLocation().equals(f.getLocation())) {
                         if (pacman.isPoweredUp ()) {
                             f.die();
                             score.scoreGhost();
@@ -98,21 +85,20 @@ public class Game implements GameContext {
         }
 
         printer.printFrame(this);
-
         sc.close();
     }
 
+    //MÉTODOS DA INTERFACE GAMECONTEXT
     @Override
     public ArrayList<Location> getGhostLocations() {
         ArrayList<Location> ghostLocations = new ArrayList<Location>();
         for (Figures f : this.ghostsList) {
             if (f.isAlive())
-                ghostLocations.add(f.location);
+                ghostLocations.add(f.getLocation());
         }
         return ghostLocations;
     }
 
-    //TEM QUE VER ESSE MÉTODO. A gnt fez ele baseando na flexibilidade de ter mais de um pacman em campo. Apesar de eu também querer fazer isso, creio que esse é o único momento que deixamos essa flexibilidade. Teríamos que tratar de vários inputs ao mesmo tempo e ai as coisas ficam infernais.
     @Override
     public Location getPacManLocation() {
         return this.pacman.getLocation();
@@ -139,6 +125,7 @@ public class Game implements GameContext {
         return Direction.LEFT;
     }
 
+    @Override
     public ArrayList<Figures> getFiguresList(){
         ArrayList<Figures> figuresArrayList = new ArrayList<>();
         figuresArrayList.add(pacman);
