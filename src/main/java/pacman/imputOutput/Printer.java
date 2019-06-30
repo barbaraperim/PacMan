@@ -30,7 +30,7 @@ public class Printer {
 
     //placing each character in the frame
     for (Figures f : figuresArrayList)
-      frame.setCharAt((int) (f.getLocation().getX()*maze.getLineSize() + f.getLocation().getX()), f.getCharRep());
+      frame.setCharAt((int) (f.getLocation().getX()*(2*maze.getLineSize()+1) + 2*f.getLocation().getY()), f.getCharRep());
 
     System.out.print(frame);
   }
