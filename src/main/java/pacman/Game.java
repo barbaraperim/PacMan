@@ -37,17 +37,21 @@ public class Game implements GameContext {
 
 
         //criando o pacman dois abaixo dos fantasmas
-        this.pacman = new Pacman(maze.getLineSize()/2 + 2, maze.getColumnSize()/2);
+        this.pacman = new Pacman(maze.getColumnSize()/2 + 5, maze.getLineSize()/2);
 
         this.ghostsList = new ArrayList<>();
 
         //adicionando os fantasmas no meio do mapa
-        this.ghostsList.add(new Evasive (10, 10));
-        this.ghostsList.add(new Prestige (10, 10));
-        this.ghostsList.add(new Random (10, 10));
-        this.ghostsList.add(new Stalker (10, 10));
+        this.ghostsList.add(new Evasive (maze.getColumnSize()/2, maze.getLineSize()/2));
+        this.ghostsList.add(new Prestige (maze.getColumnSize()/2, maze.getLineSize()/2));
+        this.ghostsList.add(new Random (maze.getColumnSize()/2, maze.getLineSize()/2));
+        this.ghostsList.add(new Stalker (maze.getColumnSize()/2, maze.getLineSize()/2));
+
+
 
         Printer printer = new Printer();
+
+        printer.printFrame(this);
 
         while (!score.hasEnded()) {
             //imprimir o frame
@@ -58,6 +62,7 @@ public class Game implements GameContext {
 
             //pacman se move (ele vai perguntar pro game, depois, qual foi o ultimo imput) e perde um "tempo" de power up, se tiver
             pacman.move(this);
+
             if (pacman.isPoweredUp()){pacman.passTimePowerUp();}
 
             //primeira conferência de sobreposição
@@ -119,11 +124,11 @@ public class Game implements GameContext {
             case 'w':
                 return Direction.UP;
             case 'a':
-                return Direction.RIGHT;
+                return Direction.LEFT;
             case 's':
                 return Direction.DOWN;
             case 'd':
-                return Direction.LEFT;
+                return Direction.RIGHT;
         }
         return Direction.LEFT;
     }
