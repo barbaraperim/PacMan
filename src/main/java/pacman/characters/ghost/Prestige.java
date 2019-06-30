@@ -16,6 +16,7 @@ public class Prestige extends Figures {
     @Override
     public void move(GameContext gameContext) {
         boolean moved = false;
+
         while(!moved){
             Integer min = 0;
             Maze m = gameContext.getMaze();

@@ -19,12 +19,13 @@ public class Stalker extends Figures {
     @Override
     public void move(GameContext gameContext){
         Location pacManLocation = gameContext.getPacManLocation();
-        double distance, smallerDistance = 10000;
+
         Direction direction = null;
         List<Direction> directions =  new LinkedList<Direction>(Arrays.asList(Direction.values()));
         Boolean moved = false;
 
         while (!moved) {
+        double distance, smallerDistance = 10000;
             for (Direction d : directions) {
                 Location newLocation = this.location.clone();
                 distance = 0;

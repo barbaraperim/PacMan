@@ -20,12 +20,12 @@ public class Evasive extends Figures {
     @Override
     public void move(GameContext gameContext){
         ArrayList<Location> ghostLocation = gameContext.getGhostLocations();
-        double distance, biggestDistance = 0;
         Direction direction = null;
         Boolean moved = false;
         List<Direction> directions =  new LinkedList<Direction>(Arrays.asList(Direction.values()));
 
         while (!moved) {
+            double distance, biggestDistance = 0;
             for (Direction d : directions) {
                 Location newLocation = this.location.clone();
                 distance = 0;
@@ -59,6 +59,7 @@ public class Evasive extends Figures {
                 moved = true;
             } catch (Exception e) {
                 directions.remove(direction);
+
             }
         }
     }
