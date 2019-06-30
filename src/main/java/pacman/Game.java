@@ -51,7 +51,7 @@ public class Game implements GameContext {
 
         printer.printFrame(this);
 
-        while (!score.hasEnded()) {
+        while (!score.hasEnded() && pacman.isAlive()) {
             //imprimir o frame
             printer.printFrame(this);
 
@@ -86,10 +86,13 @@ public class Game implements GameContext {
                             score.scoreGhost();
                         }
                         else pacman.die();
+
                     }
                 }
             }
         }
+
+        printer.printFrame(this);
 
         sc.close();
     }
@@ -135,7 +138,8 @@ public class Game implements GameContext {
         ArrayList<Figures> figuresArrayList = new ArrayList<>();
         figuresArrayList.add(pacman);
         for (Figures f : this.ghostsList) {
-            figuresArrayList.add(f);
+            if (f.isAlive())
+                figuresArrayList.add(f);
         }
         return figuresArrayList;
     }

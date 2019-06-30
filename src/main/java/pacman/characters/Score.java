@@ -47,11 +47,11 @@ public class Score {
 
       public void loseLife () {
            if (this.lifeCount() > 0) {
-         if (initialLifes > 0) initialLifes --;
-         else {
-             if((this.getScore() - this.scoreToLife) > 0){paidForLife += scoreToLife;}
-         }
-       }
+                 if (initialLifes > 0) initialLifes --;
+                 else {
+                         if((this.getScore() - this.scoreToLife) > 0){paidForLife += scoreToLife;}
+                 }
+            }
       }
 
       //all gameover situations involve the score, so we made it the responsible for that task
