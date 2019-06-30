@@ -5,6 +5,7 @@ import characters.Score;
 import characters.Figures;
 import map.Maze;
 
+import javax.imageio.metadata.IIOMetadataNode;
 import java.util.ArrayList;
 
 public class Printer {
@@ -19,7 +20,9 @@ public class Printer {
 
   private void printTitleBar (GameContext gameContext) {
     Score score = gameContext.getScore();
-    String s = "  Score : " + score.getScore() + "     Extra lifes : " + (score.lifeCount()-1);
+    int lifeCount = (score.lifeCount()-1);
+    String lifeCountStr = (lifeCount >= 0) ? Integer.toString(lifeCount) : "VOCÊ MORREU x(";
+    String s = "  Score : " + score.getScore() + "     Extra lifes : " + lifeCountStr;
     System.out.println(s);
   }
   private void printMap (GameContext gameContext) {
