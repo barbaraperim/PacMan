@@ -9,6 +9,8 @@ public class Prestige extends Figures {
 
     public Prestige (int x, int y) {
         super(x,y);
+        this.setCharRep('P');
+
     }
 
     @Override

@@ -12,6 +12,7 @@ public class Stalker extends Figures {
 
     public Stalker (int x, int y) {
         super(x,y);
+        this.setCharRep('S');
     }
 
     @Override

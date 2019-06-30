@@ -11,6 +11,8 @@ public class Random extends Figures {
 
     public Random (int x, int y) {
         super(x,y);
+        this.setCharRep('R');
+
     }
 
     @Override

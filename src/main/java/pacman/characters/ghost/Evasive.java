@@ -13,6 +13,7 @@ public class Evasive extends Figures {
 
     public Evasive (int x, int y) {
         super(x,y);
+        this.setCharRep('V');
     }
 
     @Override
