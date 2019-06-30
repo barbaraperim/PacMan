@@ -7,6 +7,10 @@ import java.util.Arrays;
 
 public class Random extends Figures {
 
+    public Random (int x, int y) {
+        super(x,y);
+    }
+
     @Override
     public void move(GameContext gameContext){
         boolean moved = false;

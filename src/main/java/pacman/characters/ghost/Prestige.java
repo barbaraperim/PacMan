@@ -6,6 +6,11 @@ import characters.Location;
 import map.Maze;
 
 public class Prestige extends Figures {
+
+    public Prestige (int x, int y) {
+        super(x,y);
+    }
+
     @Override
     public void move(GameContext gameContext) {
         boolean moved = false;

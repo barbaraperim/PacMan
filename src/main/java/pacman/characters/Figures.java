@@ -5,7 +5,7 @@ import map.Maze;
 public abstract class Figures {
     //não deveria ser private tudo?
     public Location location;
-    private boolean alive;
+    protected boolean alive;
     public char charRep;
 
     //pode remover esse método então?

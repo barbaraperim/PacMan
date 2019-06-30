@@ -8,6 +8,11 @@ import characters.Location;
 import java.util.Arrays;
 
 public class Stalker extends Figures {
+
+    public Stalker (int x, int y) {
+        super(x,y);
+    }
+
     @Override
     public void move(GameContext gameContext){
         Location pacManLocation = gameContext.getPacManLocation();

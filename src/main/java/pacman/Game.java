@@ -40,7 +40,7 @@ public class Game implements GameContext {
         this.pacman = new Pacman(maze.getLineSize()/2 + 2, maze.getColumnSize()/2);
 
         //adicionando os fantasmas no meio do mapa
-        this.ghostsList.add(new Evasive ((int) maze.getLineSize()/2, (int) maze.getColumnSize()/2));
+        this.ghostsList.add(new Evasive (10, 10));
         this.ghostsList.add(new Prestige (maze.getLineSize()/2, maze.getColumnSize()/2));
         this.ghostsList.add(new Random (maze.getLineSize()/2, maze.getColumnSize()/2));
         this.ghostsList.add(new Stalker (maze.getLineSize()/2, maze.getColumnSize()/2));

@@ -9,6 +9,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Evasive extends Figures {
+
+    public Evasive (int x, int y) {
+        super(x,y);
+    }
+
     @Override
     public void move(GameContext gameContext){
         ArrayList<Location> ghostLocation = gameContext.getGhostLocations();
