@@ -7,6 +7,7 @@ import characters.Location;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Evasive extends Figures {
@@ -22,7 +23,7 @@ public class Evasive extends Figures {
         double distance, biggestDistance = 0;
         Direction direction = null;
         Boolean moved = false;
-        List<Direction> directions = Arrays.asList(Direction.values());
+        List<Direction> directions =  new LinkedList<Direction>(Arrays.asList(Direction.values()));
 
         while (!moved) {
             for (Direction d : directions) {

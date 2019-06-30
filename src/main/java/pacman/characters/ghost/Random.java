@@ -5,6 +5,7 @@ import characters.GameContext;
 import map.Maze;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Random extends Figures {
@@ -23,7 +24,7 @@ public class Random extends Figures {
 
         while (!moved) {
             Integer randomDirection = min + (int) (Math.random() * ((max - min) + 1));
-            List<Direction> directions = Arrays.asList(Direction.values());
+            List<Direction> directions =  new LinkedList<Direction>(Arrays.asList(Direction.values()));
 
             Direction direction = directions.get(randomDirection);
 

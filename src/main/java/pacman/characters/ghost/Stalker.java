@@ -6,6 +6,7 @@ import characters.GameContext;
 import characters.Location;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Stalker extends Figures {
@@ -20,7 +21,7 @@ public class Stalker extends Figures {
         Location pacManLocation = gameContext.getPacManLocation();
         double distance, biggestDistance = 0;
         Direction direction = null;
-        List<Direction> directions = Arrays.asList(Direction.values());
+        List<Direction> directions =  new LinkedList<Direction>(Arrays.asList(Direction.values()));
         Boolean moved = false;
 
         while (!moved){
