@@ -71,11 +71,7 @@ public class Maze {
     }
 
     public boolean isValidLocation(Location l){
-<<<<<<< HEAD
         if (l.getX() < 0 || l.getY() < 0 || l.getX() > this.getColumnSize() || l.getY() > this.getLineSize()) {
-=======
-        if (l.getX() < 0 || l.getY() < 0 || l.getX() > this.getLineSize() || l.getY() > this.getColumnSize()) {
->>>>>>> 1026e1c826a0517e83ad6c8c4c7e125907973dee
             return false;
         }
         if (matrix.get((int) l.getX()).get((int) l.getY()) == MazeTile.WALL) {
