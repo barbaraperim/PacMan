@@ -10,7 +10,6 @@ import static map.MazeTile.*;
 
 public class Maze {
     private ArrayList<ArrayList<MazeTile>> matrix;
-    //TODO: quando criar o mapa, lembra de contar esses dois atributos;
     private int pastilleCounter , specialPastilleCounter;
     private int lineSize, columnSize;
 

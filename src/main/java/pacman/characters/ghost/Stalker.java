@@ -24,37 +24,39 @@ public class Stalker extends Figures {
         List<Direction> directions =  new LinkedList<Direction>(Arrays.asList(Direction.values()));
         Boolean moved = false;
 
-        for (Direction d : directions) {
-            Location newLocation = this.location.clone();
-            distance = 0;
-            switch (d){
-                case RIGHT:
-                    newLocation.right();
-                    break;
-                case DOWN:
-                    newLocation.down();
-                    break;
-                case LEFT:
-                    newLocation.left();
-                    break;
-                case UP:
-                    newLocation.up();
-                    break;
+        while (!moved) {
+            for (Direction d : directions) {
+                Location newLocation = this.location.clone();
+                distance = 0;
+                switch (d) {
+                    case RIGHT:
+                        newLocation.right();
+                        break;
+                    case DOWN:
+                        newLocation.down();
+                        break;
+                    case LEFT:
+                        newLocation.left();
+                        break;
+                    case UP:
+                        newLocation.up();
+                        break;
+                }
+
+
+                distance += newLocation.distance(pacManLocation);
+
+                if (distance < smallerDistance) {
+                    smallerDistance = distance;
+                    direction = d;
+                }
             }
-
-
-            distance += newLocation.distance(pacManLocation);
-
-            if (distance < smallerDistance) {
-                smallerDistance = distance;
-                direction = d;
+            try {
+                this.walk(direction, gameContext);
+                moved = true;
+            } catch (Exception e) {
+                directions.remove(direction);
             }
-        }
-        try{
-            this.walk(direction, gameContext);
-            moved = true;
-        }catch (Exception e) {
-            directions.remove(direction);
         }
     }
 }

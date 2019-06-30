@@ -3,14 +3,9 @@ package characters;
 import map.Maze;
 
 public abstract class Figures {
-    //não deveria ser private tudo?
-    public Location location;
+    protected Location location;
     protected boolean alive;
-    public char charRep;
-
-    //pode remover esse método então?
-    public Figures() {
-    }
+    protected char charRep;
 
     public Figures(int x, int y) {
         this.location = new Location(x, y);

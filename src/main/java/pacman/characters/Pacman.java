@@ -21,7 +21,7 @@ public class Pacman extends Figures {
         }
     }
 
-    public void getPowerUp() {
+    private void getPowerUp() {
         this.timeWithPowerUp = 20;
     }
 
@@ -52,7 +52,6 @@ public class Pacman extends Figures {
 
     public void die (GameContext gameContext) {
         Score s = gameContext.getScore ();
-        System.out.println("SE FUDEU");
         s.loseLife();
     }
 }

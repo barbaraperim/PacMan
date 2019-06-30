@@ -12,7 +12,6 @@ public class Printer {
   public Printer () {
   }
 
-  //https://www.quora.com/How-do-I-clear-console-screen-CMD-screen-in-Java-Is-there-any-function-in-Java-like-clrscr-and-system-cls-in-C
   private void clearScreen () {
     System.out.print("\033[H\033[2J");
     System.out.flush();
@@ -29,6 +28,7 @@ public class Printer {
     ArrayList<Figures> figuresArrayList = gameContext.getFiguresList();
 
     //placing each character in the frame
+
     for (Figures f : figuresArrayList)
       frame.setCharAt((int) (f.getLocation().getX()*(2*maze.getLineSize()+1) + 2*f.getLocation().getY()), f.getCharRep());
 

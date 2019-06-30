@@ -37,17 +37,9 @@ public class Location extends Point2D{
         return x;
     }
 
-    public void setX(double x) {
-        this.x = x;
-    }
-
     @Override
     public double getY() {
         return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
     }
 
     public Location up() {

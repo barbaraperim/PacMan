@@ -33,7 +33,6 @@ public class Prestige extends Figures {
             } catch (Exception e) {
 
             }
-
         }
     }
 }
