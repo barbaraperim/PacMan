@@ -31,16 +31,16 @@ public class Evasive extends Figures {
                 distance = 0;
                 switch (d){
                     case RIGHT:
-                        newLocation.right();
+                        newLocation = newLocation.right();
                         break;
                     case DOWN:
-                        newLocation.down();
+                        newLocation = newLocation.down();
                         break;
                     case LEFT:
-                        newLocation.left();
+                        newLocation = newLocation.left();
                         break;
                     case UP:
-                        newLocation.up();
+                        newLocation = newLocation.up();
                         break;
                 }
 
