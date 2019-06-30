@@ -24,7 +24,6 @@ public class Prestige extends Figures {
             max = m.getLineSize();
             Integer line = min + (int)(Math.random() * ((max - min) + 1));
 
-
             try {
                 m.isValidLocation(new Location(line, column));
                 this.location = new Location (line, column);

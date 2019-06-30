@@ -2,8 +2,10 @@ package characters.ghost;
 import characters.Direction;
 import characters.Figures;
 import characters.GameContext;
+import map.Maze;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Random extends Figures {
 
@@ -14,14 +16,22 @@ public class Random extends Figures {
     @Override
     public void move(GameContext gameContext){
         boolean moved = false;
+        int min = 0;
+        int max = Direction.values().length-1;
+
         while (!moved) {
-            int min = 0;
-            int max = Direction.values().length;
             Integer randomDirection = min + (int) (Math.random() * ((max - min) + 1));
+            List<Direction> directions = Arrays.asList(Direction.values());
 
-            Direction direction = Arrays.asList(Direction.values()).get(randomDirection);
+            Direction direction = directions.get(randomDirection);
 
-            this.walk(direction, gameContext);
+            try {
+                this.walk(direction, gameContext);
+                moved = true;
+            } catch (Exception e) {
+                directions.remove(direction);
+                max--;
+            }
         }
     }
 }

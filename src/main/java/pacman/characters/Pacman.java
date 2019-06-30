@@ -14,8 +14,11 @@ public class Pacman extends Figures {
     }
 
     public void move(GameContext gameContext) {
-        this.walk(gameContext.getInputDirection(), gameContext);
+        try {
+            this.walk(gameContext.getInputDirection(), gameContext);
+        } catch (Exception e) {
 
+        }
     }
 
     public void getPowerUp() {
