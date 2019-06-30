@@ -5,13 +5,17 @@ import characters.Figures;
 import characters.GameContext;
 import characters.Location;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Stalker extends Figures implements Ghost{
+public class Stalker extends Figures {
+
+    public Stalker (int x, int y) {
+        super(x,y);
+    }
+
     @Override
-    public void move(GameContext gameContext) throws Exception{
-        ArrayList<Location> pacManLocations = gameContext.getPacManLocations();
+    public void move(GameContext gameContext){
+        Location pacManLocation = gameContext.getPacManLocation();
         double distance, biggestDistance = 0;
         Direction direction = null;
 
@@ -33,9 +37,9 @@ public class Stalker extends Figures implements Ghost{
                     break;
             }
 
-            for (Location l : pacManLocations) {
-                distance += newLocation.distance(l);
-            }
+
+            distance += newLocation.distance(pacManLocation);
+
 
             if (distance > biggestDistance) {
                 biggestDistance = distance;

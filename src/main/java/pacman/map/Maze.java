@@ -1,13 +1,17 @@
 package map;
 
+import characters.Location;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+import static map.MazeTile.*;
+
 public class Maze {
     private ArrayList<ArrayList<MazeTile>> matrix;
     //TODO: quando criar o mapa, lembra de contar esses dois atributos;
-    private int pastilleCounter, specialPastilleCounter = 0;
+    private int pastilleCounter , specialPastilleCounter;
     private int lineSize, columnSize;
 
     private static void MapRandom() {
@@ -38,7 +42,7 @@ public class Maze {
             }
             reader.close();
         } catch (Exception e) {
-            this.MapRandom();
+            Maze.MapRandom();
             System.out.println(e.getMessage());
         }
     }
@@ -49,10 +53,10 @@ public class Maze {
                 return MazeTile.WALL;
             case ('.'):
                 this.pastilleCounter++;
-                return MazeTile.PASTILLE;
+                return PASTILLE;
             case ('o'):
                 this.specialPastilleCounter++;
-                return MazeTile.SPECIAL_PASTILLE;
+                return SPECIAL_PASTILLE;
             default:
                 return MazeTile.EMPTY;
         }
@@ -66,10 +70,13 @@ public class Maze {
         return specialPastilleCounter;
     }
 
-    public boolean isValidLocation(double line, double column) throws Exception {
+    public boolean isValidLocation(Location l){
         //TODO correct condition
-        if (line == 0 && column == 0) {
-            throw new Exception(String.format("Invalid Location X: %s Y: %s", column, line));
+        if (l.getX() < 0 || l.getY() < 0 || l.getX() > this.getLineSize() || l.getY() > this.getColumnSize()) {
+            return false;
+        }
+        if (matrix.get((int) l.getX()).get((int) l.getY()) == MazeTile.WALL) {
+            return false;
         }
         return true;
     }
@@ -93,5 +100,13 @@ public class Maze {
         }
 
         return stringBuilder.toString();
+    }
+
+    public MazeTile getMazeTile (Location l) {
+        return matrix.get((int) l.getX()).get((int) l.getY());
+    }
+
+    public void eatPastille (Location l) {
+        if (matrix.get((int) l.getX()).get((int) l.getY()) == PASTILLE || matrix.get((int) l.getX()).get((int) l.getY()) == SPECIAL_PASTILLE) matrix.get((int) l.getX()).set((int) l.getY(), EMPTY);
     }
 }

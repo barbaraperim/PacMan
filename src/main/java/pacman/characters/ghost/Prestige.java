@@ -2,18 +2,37 @@ package characters.ghost;
 
 import characters.Figures;
 import characters.GameContext;
+import characters.Location;
+import map.Maze;
 
-public class Prestige extends Figures implements Ghost {
+public class Prestige extends Figures {
+
+    public Prestige (int x, int y) {
+        super(x,y);
+    }
+
     @Override
     public void move(GameContext gameContext) {
         boolean moved = false;
         while(!moved){
             Integer min = 0;
-            Integer max = gameContext.getColumnSize();
+            Maze m = gameContext.getMaze();
+
+            Integer max = m.getColumnSize();
             Integer column = min + (int)(Math.random() * ((max - min) + 1));
 
-            max = gameContext.getLineSize();
+            max = m.getLineSize();
             Integer line = min + (int)(Math.random() * ((max - min) + 1));
+
+
+            try {
+                m.isValidLocation(new Location(line, column));
+                this.location = new Location (line, column);
+                moved = true;
+            } catch (Exception e) {
+
+            }
+
         }
     }
 }

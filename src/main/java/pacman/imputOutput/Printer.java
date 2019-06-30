@@ -1,15 +1,15 @@
 package imputOutput;
 
+import characters.GameContext;
+import characters.Score;
+import characters.Figures;
+import map.Maze;
+
+import java.util.ArrayList;
+
 public class Printer {
-  private static Printer printer = null;
 
-  private Printer () {
-    //não sei o que colocar aqui
-  }
-
-  public Printer getInstance () {
-    if (printer == null) printer = new Printer();
-    return printer;
+  public Printer () {
   }
 
   //https://www.quora.com/How-do-I-clear-console-screen-CMD-screen-in-Java-Is-there-any-function-in-Java-like-clrscr-and-system-cls-in-C
@@ -18,33 +18,29 @@ public class Printer {
     System.out.flush();
   }
 
-//  private void printTitleBar () {
-//    int size = Maze.getSize();
-//    Score score = Score.getInstance();
-//    String s = "  Score : " + score.getScore() + "     Extra lifes : " + score.lifeCount()-1;
-//    System.out.println(s);
-//  }
-//  private void printMap (Figures[] cVector) {
-//    Maze map = Maze.getInstance();
-//    char[][] frame = map.printMap();
-//
-//    //placing each character in the frame
-//    for (int i = 0; i < cVector.size(); i++)
-//      frame[cVector[i].getLocation().getX()][cVector[i].getLocation().getY()] = cVector[i].getRepresentation();
-//
-//    //actual printing
-//    for (int i = 0; i < cVector.size(); i++){
-//      for (int j = 0; j < cVector.size(); j++)
-//        System.out.print(frame);
-//      System.out.print("\n");
-//    }
-//  }
-//  public void printFrame (Figures[] cVector) {
-//    this.clearScreen();
-//    this.printTitleBar ();
-//    this.printMap(cVector);
-//  }
-//
+  private void printTitleBar (GameContext gameContext) {
+    Score score = gameContext.getScore();
+    String s = "  Score : " + score.getScore() + "     Extra lifes : " + (score.lifeCount()-1);
+    System.out.println(s);
+  }
+  private void printMap (GameContext gameContext) {
+    Maze maze = gameContext.getMaze();
+    StringBuilder frame = new StringBuilder().append(maze.toString());
+    ArrayList<Figures> figuresArrayList = gameContext.getFiguresList();
+
+    //placing each character in the frame
+    for (Figures f : figuresArrayList)
+      frame.setCharAt((int) (f.getLocation().getX()*maze.getLineSize() + f.getLocation().getX()), f.getCharRep());
+
+    System.out.print(frame);
+  }
+
+  public void printFrame (GameContext gameContext) {
+    this.clearScreen();
+    this.printTitleBar (gameContext);
+    this.printMap(gameContext);
+  }
+
 //  public void printMenu () {
 //    this.clearScreen();
 //    System.out.print(Menu.getInstance().toString());

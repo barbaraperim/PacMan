@@ -5,10 +5,14 @@ import characters.GameContext;
 
 import java.util.Arrays;
 
-public class Random extends Figures implements Ghost {
+public class Random extends Figures {
+
+    public Random (int x, int y) {
+        super(x,y);
+    }
 
     @Override
-    public void move(GameContext gameContext) throws Exception{
+    public void move(GameContext gameContext){
         boolean moved = false;
         while (!moved) {
             int min = 0;

@@ -1,0 +1,31 @@
+############################
+#                          #
+#    Welcome to PacMan!    #
+#                          #
+#            ____          #
+#           /    \         #
+#          / o   /   _     #
+#         |     /   / \    #
+#         |     \   \_/    #
+#          \     \         #
+#           \____/         #
+#                          #
+#     Controls:            #
+#            up            #
+#            W             #
+#   left A   S   D right   #
+#           down           #
+#                          #
+#                          #
+#                          #
+# To begin a game, just    #
+# type any number. If      #
+# mapNUMBER.txt exists, it #
+# will be loaded as your   #
+# map. Otherwise, we will  #
+# generate a completely    #
+# random map for you!      #
+#                          #
+#                          #
+#                          #
+############################
