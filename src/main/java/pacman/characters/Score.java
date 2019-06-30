@@ -8,14 +8,11 @@ public class Score {
       private final int ghostValue = 100;
       private final int scoreToLife = 10000;
 
-      private int initialLifes = 2;
+      private int lifes = 2;
 
       private int scoreMax, pastilleScore, ghostScore, paidForLife;
-      private static Score s= null;
 
-      //implements the "singleton" pattern;
       public Score (Maze maze) {
-        //    //TODO: Exceção: caso o mapa ainda não exista
        this.scoreMax = maze.getPastilleCounter() * pastilleValue;
        this.scoreMax += maze.getSpecialPastilleCounter() * specialPastilleValue;
 
@@ -27,12 +24,22 @@ public class Score {
         //methods to add scores
       public void scorePastille () {
         this.pastilleScore += pastilleValue;
+        this.getALife();
       }
       public void scoreSpecialPastille () {
         this.pastilleScore += specialPastilleValue;
+        this.getALife();
       }
       public void scoreGhost () {
         this.ghostScore += ghostValue;
+        this.getALife();
+      }
+
+      private void getALife() {
+          if (getScore() > scoreToLife) {
+              paidForLife += scoreToLife;
+              lifes++;
+          }
       }
 
       //since we store many "types" of scores, we have to have a getScore that returns the "real" score;
@@ -40,18 +47,13 @@ public class Score {
        return pastilleScore - paidForLife + ghostScore;
      }
 
-      //QUANTIDADE MÍNIMA DE VIDAS PRO JOGO CONTINUAR É 1, SE CHEGAR A ZERO ACABOU
+      //QUANTIDADE MÍNIMA DE VIDAS PRO JOGO CONTINUAR É 0, SE CHEGAR A NEGATIVO ACABOU
       public int lifeCount () {
-           return initialLifes + (getScore() / scoreToLife);
+           return lifes;
          }
 
       public void loseLife () {
-           if (this.lifeCount() > 0) {
-                 if (initialLifes > 0) initialLifes --;
-                 else {
-                         if((this.getScore() - this.scoreToLife) > 0){paidForLife += scoreToLife;}
-                 }
-            }
+           this.lifes--;
       }
 
       //all gameover situations involve the score, so we made it the responsible for that task

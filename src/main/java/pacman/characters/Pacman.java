@@ -52,7 +52,7 @@ public class Pacman extends Figures {
 
     public void die (GameContext gameContext) {
         Score s = gameContext.getScore ();
-        if (s.lifeCount() > 1) s.loseLife();
-        else super.setAlive(false);
+        System.out.println("SE FUDEU");
+        s.loseLife();
     }
 }

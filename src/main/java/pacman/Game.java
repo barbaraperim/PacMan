@@ -42,10 +42,11 @@ public class Game implements GameContext {
         this.ghostsList = new ArrayList<>();
 
         //adicionando os fantasmas no meio do mapa
+
+        this.ghostsList.add(new Stalker (maze.getColumnSize()/2, maze.getLineSize()/2));
         this.ghostsList.add(new Evasive (maze.getColumnSize()/2, maze.getLineSize()/2));
         this.ghostsList.add(new Prestige (maze.getColumnSize()/2, maze.getLineSize()/2));
         this.ghostsList.add(new Random (maze.getColumnSize()/2, maze.getLineSize()/2));
-        this.ghostsList.add(new Stalker (maze.getColumnSize()/2, maze.getLineSize()/2));
 
         Printer printer = new Printer();
 
@@ -85,8 +86,12 @@ public class Game implements GameContext {
                             f.die();
                             score.scoreGhost();
                         }
-                        else pacman.die();
-
+                        else {
+                            System.out.println("SE FUDEU");
+                            pacman.die();
+                            System.out.println(score.lifeCount());
+                            System.out.println(pacman.isAlive());
+                        }
                     }
                 }
             }

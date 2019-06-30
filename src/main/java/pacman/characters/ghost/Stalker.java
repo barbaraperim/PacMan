@@ -19,45 +19,42 @@ public class Stalker extends Figures {
     @Override
     public void move(GameContext gameContext){
         Location pacManLocation = gameContext.getPacManLocation();
-        double distance, biggestDistance = 0;
+        double distance, smallerDistance = 10000;
         Direction direction = null;
         List<Direction> directions =  new LinkedList<Direction>(Arrays.asList(Direction.values()));
         Boolean moved = false;
 
-        while (!moved){
-            for (Direction d : directions) {
-                Location newLocation = this.location.clone();
-                distance = 0;
-                switch (d){
-                    case RIGHT:
-                        newLocation.right();
-                        break;
-                    case DOWN:
-                        newLocation.down();
-                        break;
-                    case LEFT:
-                        newLocation.left();
-                        break;
-                    case UP:
-                        newLocation.up();
-                        break;
-                }
-
-
-                distance += newLocation.distance(pacManLocation);
-
-                if (distance >= biggestDistance) {
-                    biggestDistance = distance;
-                    direction = d;
-                }
+        for (Direction d : directions) {
+            Location newLocation = this.location.clone();
+            distance = 0;
+            switch (d){
+                case RIGHT:
+                    newLocation.right();
+                    break;
+                case DOWN:
+                    newLocation.down();
+                    break;
+                case LEFT:
+                    newLocation.left();
+                    break;
+                case UP:
+                    newLocation.up();
+                    break;
             }
-            try{
-                this.walk(direction, gameContext);
-                moved = true;
-            }catch (Exception e) {
-                directions.remove(direction);
+
+
+            distance += newLocation.distance(pacManLocation);
+
+            if (distance < smallerDistance) {
+                smallerDistance = distance;
+                direction = d;
             }
         }
-
+        try{
+            this.walk(direction, gameContext);
+            moved = true;
+        }catch (Exception e) {
+            directions.remove(direction);
+        }
     }
 }
