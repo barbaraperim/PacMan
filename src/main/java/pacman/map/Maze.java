@@ -71,7 +71,6 @@ public class Maze {
     }
 
     public boolean isValidLocation(Location l){
-        //TODO correct condition
         if (l.getX() < 0 || l.getY() < 0 || l.getX() > this.getLineSize() || l.getY() > this.getColumnSize()) {
             return false;
         }

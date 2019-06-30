@@ -17,33 +17,43 @@ public abstract class Figures {
         this.alive = true;
     }
 
-    protected void walk(Direction direction, GameContext gameContext){
+    protected void walk(Direction direction, GameContext gameContext) throws Exception {
         Location newLocation = this.location.clone();
         Maze m = gameContext.getMaze();
+        Boolean stuck = false;
         switch (direction) {
             case UP:
                 if (m.isValidLocation(newLocation.up())) {
                     this.location = this.location.up();
+                } else {
+                    stuck = true;
                 }
                 break;
             case LEFT:
-                newLocation.left();
                 if (m.isValidLocation(newLocation.left())) {
                     this.location = this.location.left();
+                } else {
+                    stuck = true;
                 }
                 break;
             case DOWN:
-                newLocation.down();
                 if (m.isValidLocation(newLocation.down())) {
                     this.location = this.location.down();
+                } else {
+                    stuck = true;
                 }
                 break;
             case RIGHT:
-                newLocation.right();
                 if (m.isValidLocation(newLocation.right())) {
                     this.location = this.location.right();
+                } else {
+                    stuck = true;
                 }
                 break;
+        }
+
+        if (stuck) {
+            throw new Exception("Invalid Location");
         }
     }
 

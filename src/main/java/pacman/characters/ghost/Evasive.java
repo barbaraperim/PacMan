@@ -7,6 +7,7 @@ import characters.Location;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Evasive extends Figures {
 
@@ -19,35 +20,44 @@ public class Evasive extends Figures {
         ArrayList<Location> ghostLocation = gameContext.getGhostLocations();
         double distance, biggestDistance = 0;
         Direction direction = null;
+        Boolean moved = false;
+        List<Direction> directions = Arrays.asList(Direction.values());
 
-        for (Direction d : Arrays.asList(Direction.values())) {
-            Location newLocation = this.location.clone();
-            distance = 0;
-            switch (d){
-                case RIGHT:
-                    newLocation.right();
-                    break;
-                case DOWN:
-                    newLocation.down();
-                    break;
-                case LEFT:
-                    newLocation.left();
-                    break;
-                case UP:
-                    newLocation.up();
-                    break;
+        while (!moved) {
+            for (Direction d : directions) {
+                Location newLocation = this.location.clone();
+                distance = 0;
+                switch (d){
+                    case RIGHT:
+                        newLocation.right();
+                        break;
+                    case DOWN:
+                        newLocation.down();
+                        break;
+                    case LEFT:
+                        newLocation.left();
+                        break;
+                    case UP:
+                        newLocation.up();
+                        break;
+                }
+
+                for (Location l : ghostLocation) {
+                    distance += newLocation.distance(l);
+                }
+
+                if (distance >= biggestDistance) {
+                    biggestDistance = distance;
+                    direction = d;
+                }
             }
 
-            for (Location l : ghostLocation) {
-                distance += newLocation.distance(l);
-            }
-
-            if (distance >= biggestDistance) {
-                biggestDistance = distance;
-                direction = d;
+            try {
+                this.walk(direction, gameContext);
+                moved = true;
+            } catch (Exception e) {
+                directions.remove(direction);
             }
         }
-
-        this.walk(direction, gameContext);
     }
 }
