@@ -14,8 +14,8 @@ public class Maze {
     private int pastilleCounter , specialPastilleCounter;
     private int lineSize, columnSize;
 
-    private static void MapRandom() {
-        //creates random map
+    private void MapRandom() {
+        //cria mapa random
     }
 
     public Maze(int numberOfFile) {
@@ -42,7 +42,7 @@ public class Maze {
             }
             reader.close();
         } catch (Exception e) {
-            Maze.MapRandom();
+            //gerar mapa random
             System.out.println(e.getMessage());
         }
     }
