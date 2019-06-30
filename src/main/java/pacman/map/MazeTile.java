@@ -4,7 +4,7 @@ public enum MazeTile {
     PASTILLE('.'),
     SPECIAL_PASTILLE('0'),
     WALL('='),
-    EMPTY('E');
+    EMPTY(' ');
 
     public char charRep;
     MazeTile(char c){this.charRep = c;}

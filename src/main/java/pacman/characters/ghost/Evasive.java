@@ -42,12 +42,12 @@ public class Evasive extends Figures {
                 distance += newLocation.distance(l);
             }
 
-            if (distance > biggestDistance) {
+            if (distance >= biggestDistance) {
                 biggestDistance = distance;
                 direction = d;
             }
         }
-        
+
         this.walk(direction, gameContext);
     }
 }
