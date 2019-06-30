@@ -5,6 +5,7 @@ import characters.Location;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Map;
 
 import static map.MazeTile.*;
 
@@ -14,37 +15,46 @@ public class Maze {
     private int pastilleCounter , specialPastilleCounter;
     private int lineSize, columnSize;
 
-    private void MapRandom() {
-        //cria mapa random
+    private int MapRandom() {
+        int min = 1;
+        int max = 3;
+        int file = min + (int)(Math.random() * ((max - min) + 1));
+        return file;
     }
 
     public Maze(int numberOfFile) {
-        String filename = "./src/main/java/resources/Map0" + numberOfFile + ".txt";
-        matrix = new ArrayList<>();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(filename));
-            String line;
-            columnSize = 0;
+        boolean created = false;
 
-            while ((line = reader.readLine()) != null) {
-                if (line.length() > lineSize) {
-                    lineSize = line.length();
+        while (!created) {
+            String filename = "./src/main/java/resources/Map0" + numberOfFile + ".txt";
+            matrix = new ArrayList<>();
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(filename));
+                String line;
+                columnSize = 0;
+
+                while ((line = reader.readLine()) != null) {
+                    if (line.length() > lineSize) {
+                        lineSize = line.length();
+                    }
+
+                    ArrayList<MazeTile> mapLine = new ArrayList<>();
+
+                    for (char c : line.toCharArray()) {
+                        mapLine.add(discoverTile(c));
+                    }
+
+                    columnSize++;
+                    matrix.add(mapLine);
                 }
-
-                ArrayList<MazeTile> mapLine = new ArrayList<>();
-
-                for (char c : line.toCharArray()) {
-                    mapLine.add(discoverTile(c));
-                }
-
-                columnSize++;
-                matrix.add(mapLine);
+                created = true;
+                reader.close();
+            } catch (Exception e) {
+                numberOfFile = MapRandom();
+                System.out.println(e.getMessage());
             }
-            reader.close();
-        } catch (Exception e) {
-            //gerar mapa random
-            System.out.println(e.getMessage());
         }
+
     }
 
     private MazeTile discoverTile(char c) {
