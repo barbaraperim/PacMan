@@ -24,9 +24,19 @@ public class Game implements GameContext {
         Scanner sc = new Scanner(System.in);
         System.out.println("Escolha o mapa 1, 2, 3 (ou digite qualquer número para randomizar): ");
 
-        this.maze = new Maze(sc.nextInt());
-        this.score = new Score (this);
+        boolean escolhido = false;
+        while (!escolhido) {
+            try {
+                this.maze = new Maze(sc.nextInt());
+                escolhido = true;
+            } catch (Exception e) {
+                sc.next();
+                System.out.println("Escolha o mapa 1, 2, 3 (ou digite qualquer número para randomizar): ");
+            }
+        }
+
         System.out.println(this.maze.toString());
+        this.score = new Score (this);
 
         this.pacman = new Pacman(maze.getColumnSize()/2 + 5, maze.getLineSize()/2);
 
