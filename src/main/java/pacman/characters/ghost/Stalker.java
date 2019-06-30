@@ -21,7 +21,7 @@ public class Stalker extends Figures {
         Location pacManLocation = gameContext.getPacManLocation();
 
         Direction direction = null;
-        List<Direction> directions =  new LinkedList<Direction>(Arrays.asList(Direction.values()));
+        List<Direction> directions =  new LinkedList<>(Arrays.asList(Direction.values()));
         Boolean moved = false;
 
         while (!moved) {
